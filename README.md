@@ -13,9 +13,11 @@ pip freeze > requirements.txt
 ```
 
 ```
-pyuic6 -x <filename>.ui -o <filename>.py
+pyuic6 -x gui.ui -o gui.py 
 ```
 
 ```
 pyinstaller --onefile -w --icon=icon.png main.py
 ```
+
+Official PyQt6 docs: https://www.riverbankcomputing.com/static/Docs/PyQt6/designer.html
