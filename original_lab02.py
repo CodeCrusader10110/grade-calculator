@@ -1,3 +1,7 @@
+"""
+This is the original, terminal-based script from Lab 2 that this project is
+based on.
+"""
 def grade_calc():
     total_students = int(input('Total number of students: '))
 

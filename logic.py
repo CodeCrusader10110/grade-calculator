@@ -1,7 +1,8 @@
 """
 TODO docstring
 """
-from typing import Literal
+import sys # temporary
+from typing import Literal # may not need?
 from PyQt6.QtWidgets import QDialog
 from gui import Ui_Dialog
 
@@ -24,79 +25,114 @@ class GuiLogic(QDialog, Ui_Dialog):
         # Tracks where the program is at to determine how text input should be
         # validated and where it should be sent to for the various questions, or
         # for when the program is complete to tell user to reset
-        self.__state: int = 0
+        self.__prompt_state: int = 0
+        # 0 -> Enter total number of students
+        # 1 -> Enter X score(s)
+        # 2 -> Score calculation complete
 
-        # Maybe good?
-        # self.__defaults: dict = {
-        #     'label_one': self.label_one.txt()
-        # }
+        self.__label_defaults: dict[str, str] = {
+            "prompt": "<b>Enter total number of students</b>",
+            "validation": "",
+            "student_count": "",
+            "student_scores": "",
+        }
 
+        # Makes the initial score table invisible
+        self.table_student_scores.setVisible(False)
+        # self.table_student_scores.setRowCount(0)
 
-        # Every method needs to have a connection with the corresponding widget
+        # Buttons
         self.button_enter.clicked.connect(self.button_enter_clicked)
-
-        # self.button_reset.clicked.connect(self.button_reset_clicked)
-
-        # Quit button doesn't require entire method
+        self.button_reset.clicked.connect(self.button_reset_clicked)
         self.button_quit.clicked.connect(self.close)
 
-    # def _capture_defaults(self) -> dict:
-    #     """
-    #     not sure if this will be the way we end up saving defaults for reset
-    #     button but we'll see
-    #     """
-    #     # return {
-    #     #     "label_one" : self.label_one.text(),
-    #     #     "label_two" : self.label_two.text(),
-    #     #     # etc
-    #     # }
-    #     pass
+    # Widgets
+    def label_prompt_write(self) -> None:
+        """
+        TODO docstring - unnecessary?
+        """
+        # self.label_prompt # something
+        pass
 
-    # Widget logic
-    def label_prompt_update(self) -> None:
+    def button_enter_clicked(self) -> None:
         """
         TODO docstring
+        """
+        input = self.text_input.toPlainText()
+        if self.__prompt_state == 0:
+            # 0 -> Enter total number of students
+            pass
+        elif self.__prompt_state == 1:
+            # 1 -> Enter X score(s)
+            pass
+        
+        # Literally don't do anything if there's no active prompt at 2+
+
+    def label_student_count_write(self) -> None:
+        """
+        TODO docstring - also maybe unnecessary
         """
         pass
 
-    def button_enter_clicked(
-            self,
-            logic_state = Literal['student_count', 'scores']
-        ) -> None:
+    def label_student_scores_write(self) -> None:
         """
-        TODO docstring
-        """
-        self.label_text_validation.setText("Enter button was clicked")
-
-    def label_student_count_update(self) -> None:
-        """
-        TODO docstring
+        TODO docstring - may not even use this but instead use the table
         """
         pass
 
-    def label_student_scores_update(self) -> None:
+    def table_student_scores_write(self, data: list[tuple]) -> None:
         """
         TODO docstring
         """
-        pass
+
+# table.setRowCount(n)          # Make space for n rows
+# table.setColumnCount(n)       # Make space for n columns
+# table.setHorizontalHeaderLabels(["Header1", "Header2"]) # top row text
+# table.setItem(row, column, QTableWidgetItem("text")) # put something in a cell
+
+        # set up headers?
+        self.table_student_scores.setHorizontalHeaderLabels(
+            ["Student", "Score", "Grade"]
+        )
+
+        # Enabling sorting must be done after setting up columns I guess?
+        self.table_student_scores.setSortingEnabled(True)
+
+        # write values?
+        
 
     def button_reset_clicked(self) -> None:
         """
         TODO docstring
         """
-        pass
+        self.__prompt_state = 0
+
+        self.label_prompt.setText(self.__label_defaults["prompt"])
+        self.text_input.clear()
+        self.label_input_validation.setText(self.__label_defaults["validation"])
+        self.label_student_count.setText(self.__label_defaults["student_count"])
+        self.label_student_scores.setText(
+            self.__label_defaults["student_scores"]
+        )
+
+        self.table_student_scores.setRowCount(0)
+        # Turn off sorting if it was enabled before, maybe bad practice?
+        self.table_student_scores.setSortingEnabled(False)
+        self.table_student_scores.setVisible(False)
 
     # Tools
     def input_students_validation(self) -> None:
         """
         TODO docstring
         """
+        # self.label_input_validation.setText("something")
         pass
 
     def input_scores_validation(self) -> None:
         """
         TODO docstring
         """
+        # self.label_input_validation.setText("something")
         pass
 
     # Grading logic

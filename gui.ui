@@ -16,6 +16,18 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>400</width>
+    <height>16777215</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
@@ -39,8 +51,17 @@
      </property>
      <item>
       <widget class="QLabel" name="label_prompt">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
-        <string>Prompt text</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Prompt text&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -50,12 +71,18 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_input">
        <item>
-        <widget class="QPlainTextEdit" name="text_field">
+        <widget class="QPlainTextEdit" name="text_input">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -67,6 +94,12 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>40</height>
+          </size>
+         </property>
          <property name="text">
           <string>Enter</string>
          </property>
@@ -75,7 +108,13 @@
       </layout>
      </item>
      <item>
-      <widget class="QLabel" name="label_text_validation">
+      <widget class="QLabel" name="label_input_validation">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>Valid input accepted!</string>
        </property>
@@ -83,25 +122,83 @@
      </item>
      <item>
       <widget class="QLabel" name="label_student_count">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>40</height>
+        </size>
+       </property>
        <property name="text">
         <string>Number of Students: &lt;b&gt;X&lt;/b&gt;</string>
        </property>
       </widget>
      </item>
-     <item>
+     <item alignment="Qt::AlignTop">
       <widget class="QLabel" name="label_student_scores">
        <property name="text">
         <string>Student Scores:
-Student 1 - XX
-Student 2 - XX
-Student 3 - XX</string>
+
+Student X score is X and grade is X</string>
        </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTableWidget" name="table_student_scores">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <property name="alternatingRowColors">
+        <bool>true</bool>
+       </property>
+       <property name="columnCount">
+        <number>3</number>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="horizontalHeaderHighlightSections">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column/>
+       <column/>
+       <column/>
       </widget>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
         <widget class="QPushButton" name="button_reset">
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string>Reset</string>
          </property>
@@ -109,6 +206,15 @@ Student 3 - XX</string>
        </item>
        <item>
         <widget class="QPushButton" name="button_quit">
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string>Quit</string>
          </property>
